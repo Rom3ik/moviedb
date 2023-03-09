@@ -40,6 +40,23 @@ li {
     }
 }
 
+@media screen and (max-width: 760px) {
+    .container, aside {
+        transform: translateX(-200px);
+        transition: .3s;
+    }
+}
+
+@media screen and (max-width: 761px) {
+    .container, aside {
+        transform: translateX(-200px);
+        transition: .3s;
+    }
+    .container{
+        margin-left: 80px;
+    }
+}
+
 .App-header {
     background-color: #282c34;
     min-height: 100vh;
