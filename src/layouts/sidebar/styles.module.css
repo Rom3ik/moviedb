@@ -1,8 +1,8 @@
 .sidebar {
-    width: 220px;
     height: 100%;
     text-align: left;
     padding: 0 0 0 50px;
+    margin-right: 40px;
 }
 
 .sidebar > ul {
