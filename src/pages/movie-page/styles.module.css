@@ -30,3 +30,14 @@ h1 {
 .mt30 {
     margin-top: 30px;
 }
+
+.trailerContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+iframe {
+    border-radius: 20px;
+}
