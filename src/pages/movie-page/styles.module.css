@@ -1,0 +1,32 @@
+.posterImg {
+    height: 220px;
+    border-radius: 20px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h1 {
+    text-align: left;
+}
+
+.description {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    min-width: 413px;
+    text-align: left;
+    width: 100%;
+    max-width: 413px;
+}
+
+.gap20 {
+    gap: 20px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}

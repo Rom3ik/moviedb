@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
-import {NavLink, Route} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {FreeMode, Navigation, Pagination} from "swiper";
 import 'swiper/css';
 import './styles.css'
@@ -31,7 +31,7 @@ function MovieSlider({category, queryParams}) {
         (async () => {
             await getMovies();
         })()
-    }, [name, identifier])
+    }, [])
 
     return (
         <div style={{width: '100%', marginBottom: '80px'}}>
@@ -79,8 +79,8 @@ function MovieSlider({category, queryParams}) {
                 >
                     {movies.length > 0 ? movies.map(movie => (
                         <SwiperSlide key={movie?.kinopoiskId || movie?.filmId}>
-                            <NavLink to={'/movie'}>
-                                <img src={movie?.posterUrl}/>
+                            <NavLink to={{pathname: '/movie', state: {movieId: movie?.kinopoiskId || movie?.filmId}}}>
+                                <img src={movie?.posterUrl} alt='poster'/>
                             </NavLink>
                         </SwiperSlide>
                     )) : <Loader/>}
