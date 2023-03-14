@@ -5,6 +5,13 @@
 
 .flex {
     display: flex;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.flexWrap {
     flex-wrap: wrap;
 }
 

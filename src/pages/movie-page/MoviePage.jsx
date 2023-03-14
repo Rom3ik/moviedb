@@ -19,8 +19,10 @@ function MoviePage() {
             .then(res => res.json())
             .then(json => {
                 json.items.filter(trailer => {
-                    if (trailer.url.startsWith('https://widget')) {
-                        setTrailer(trailer.url);
+                    if (trailer.url.startsWith('https://youtu.be') || trailer.url.startsWith('https://youtube.com')) {
+                        let n = trailer.url.lastIndexOf('/');
+                        let embedLink = 'https://youtube.com/embed/' + trailer.url.substring(n + 1);
+                        setTrailer(embedLink);
                     }
                 })
             })
@@ -49,11 +51,11 @@ function MoviePage() {
         <div style={{display: 'flex'}}>
             <div style={{width: '100%'}}>
                 <h1>{movie?.nameRu || movie?.nameOriginal}</h1>
-                <div className={`${styles.flex} ${styles.gap20} ${styles.mt30}`}>
+                <div className={`${styles.flex} ${styles.gap20} ${styles.alignCenter}`}>
                     <img className={styles.posterImg} src={movie?.posterUrl} alt="poster"/>
                     <div className={styles.trailerContainer}>
                         <p className={styles.description}>{movie?.description}</p>
-                        <iframe is="x-frame-bypass" src={trailer} width="521" frameBorder={0} height="291"></iframe>
+                        <iframe src={trailer} width="521" frameBorder={0} height="291"></iframe>
                     </div>
                 </div>
             </div>
