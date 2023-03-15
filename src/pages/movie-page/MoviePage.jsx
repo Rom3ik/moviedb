@@ -28,9 +28,7 @@ function MoviePage() {
             .then(json => {
                 json.items.filter(trailer => {
                     let embedUrl = youTubeTrailerExists(trailer.url);
-                    if (embedUrl) {
-                        setTrailer(embedUrl);
-                    }
+                    return embedUrl ? setTrailer(embedUrl) : null;
                 });
             })
             .catch(err => setTrailer(''))
@@ -49,7 +47,6 @@ function MoviePage() {
             .catch(err => setMovie({}))
     }, [movieId])
 
-
     useEffect(() => {
         getMovieData();
         getTrailer();
@@ -60,18 +57,25 @@ function MoviePage() {
             <div style={{width: '100%'}}>
                 <h1>{movie?.nameRu || movie?.nameOriginal}</h1>
                 <div className={`${styles.flex} ${styles.gap20}`} style={{marginTop: '30px'}}>
-                    <img className={styles.posterImg} src={movie?.posterUrl} alt="poster"/>
+                    <img id='poster' className={styles.posterImg} src={movie?.posterUrl}
+                         alt="poster"/>
                     <div className={styles.trailerContainer}>
 
                         <div style={{display: 'flex', flexDirection: 'column'}} className={styles.gap20}>
-                            <div  className={styles.flex} style={{gap: '10px'}}>
-                            {movie?.genres?.length > 0 ? movie?.genres.map(genre => (
+                            <div className={styles.flex} style={{gap: '10px'}}>
+                                {movie?.genres?.length > 0 ? movie?.genres.map(genre => (
                                     <button key={genre?.genre} className={styles.badge}>{genre?.genre}</button>
-                            )) : null}
+                                )) : null}
                             </div>
                             <p className={styles.description}>{movie?.description}</p>
                         </div>
-                        <div style={{width: '521px', height: '320px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <div style={{
+                            width: '521px',
+                            height: '320px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}>
                             {trailer ?
                                 <iframe title='trailer' src={trailer} width="521" frameBorder={0} height="320"/> :
                                 <Loader style={{width: '521px'}}/>
