@@ -1,10 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useLocation, useHistory} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import styles from './styles.module.css';
 import Loader from "../../components/loader/Loader";
 
 function MoviePage() {
-    const history = useHistory();
     const location = useLocation();
     const movieId = location.state.movieId;
     const [movie, setMovie] = useState({});
