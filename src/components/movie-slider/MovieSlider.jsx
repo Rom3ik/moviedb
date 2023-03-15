@@ -6,8 +6,6 @@ import 'swiper/css';
 import './styles.css'
 import Loader from "../loader/Loader";
 
-const key = '9f093681-2656-4e6f-ac06-6ee5ef514ff9';
-const API = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/'
 
 function MovieSlider({category}) {
 
@@ -15,15 +13,16 @@ function MovieSlider({category}) {
     const {name, identifier} = category;
 
     const getMovies = useCallback(() => {
-        fetch(`${API + identifier}?year=${'2023'}&month=MARCH`, {
+        const url  = identifier !== 'releases' ? process.env.REACT_APP_API_URL_V2 : process.env.REACT_APP_API_URL_V1;
+        fetch(`${url + identifier}?year=${'2023'}&month=MARCH`, {
             method: 'GET',
             headers: {
-                'X-API-KEY': key,
+                'X-API-KEY': process.env.REACT_APP_ACCESS_KEY,
                 'Content-Type': 'application/json',
             },
         })
             .then(res => res.json())
-            .then(json => setMovie(json.films || json.items))
+            .then(json => setMovie(json.films || json.items || json.releases))
             .catch(err => setMovie([]))
     }, [identifier]);
 
@@ -78,7 +77,7 @@ function MovieSlider({category}) {
                     }}
                 >
                     {movies.length > 0 ? movies.map(movie => (
-                        <SwiperSlide key={movie?.kinopoiskId || movie?.filmId}>
+                        <SwiperSlide key={movie?.kinopoiskId || movie?.filmId || movie?.releases}>
                             <NavLink to={{pathname: '/movie', state: {movieId: movie?.kinopoiskId || movie?.filmId}}}>
                                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px'}}>
                                    <img src={movie?.posterUrl} alt='poster'/>

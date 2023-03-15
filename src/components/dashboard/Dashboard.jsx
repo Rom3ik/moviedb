@@ -6,7 +6,8 @@ function Dashboard() {
     return (
         <>
             <MovieSlider category={Categories.TOP}/>
-            <MovieSlider queryParams={{year: '2023'}} category={Categories.PREMIERES}/>
+            <MovieSlider category={Categories.PREMIERES}/>
+            <MovieSlider category={Categories.RELEASES}/>
         </>
     );
 }

@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useLocation} from "react-router-dom";
+import {useLocation, useHistory} from "react-router-dom";
 import styles from './styles.module.css';
 import Loader from "../../components/loader/Loader";
 
 function MoviePage() {
+    const history = useHistory();
     const location = useLocation();
     const movieId = location.state.movieId;
     const [movie, setMovie] = useState({});
@@ -17,7 +18,7 @@ function MoviePage() {
     }
 
     const getTrailer = useCallback(() => {
-        fetch(`${process.env.REACT_APP_API_URL}` + movieId + '/videos', {
+        fetch(`${process.env.REACT_APP_API_URL_V2}` + movieId + '/videos', {
             method: 'GET',
             headers: {
                 'X-API-KEY': process.env.REACT_APP_ACCESS_KEY,
@@ -35,7 +36,7 @@ function MoviePage() {
     }, [movieId]);
 
     const getMovieData = useCallback(() => {
-        fetch(`${process.env.REACT_APP_API_URL}` + movieId, {
+        fetch(`${process.env.REACT_APP_API_URL_V2}` + movieId, {
             method: 'GET',
             headers: {
                 'X-API-KEY': process.env.REACT_APP_ACCESS_KEY,
