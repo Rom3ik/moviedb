@@ -10,5 +10,9 @@ export const Categories = {
     RELEASES: {
         name: 'Releases',
         identifier: 'releases'
+    },
+    TV_SERIES: {
+        name: 'Series',
+        identifier: 'TV_SERIES'
     }
 }

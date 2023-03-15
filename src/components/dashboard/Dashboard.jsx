@@ -8,6 +8,7 @@ function Dashboard() {
             <MovieSlider category={Categories.TOP}/>
             <MovieSlider category={Categories.PREMIERES}/>
             <MovieSlider category={Categories.RELEASES}/>
+            <MovieSlider isSeries={true} category={Categories.TV_SERIES}/>
         </>
     );
 }
